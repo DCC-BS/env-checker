@@ -82,7 +82,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           mkdir -p release-artifact
-          cp lsp/target/${{ matrix.target }}/release/env-checker-lsp release-artifact/
+          cp lsp/target/release/env-checker-lsp release-artifact/
           cd release-artifact
           tar czf env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }} env-checker-lsp
 
