@@ -27,12 +27,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Zed
-        uses: zed-industries/setup-zed@v1
-
       - name: Build extension
         working-directory: ./extension
-        run: zed build
+        run: cargo build
 
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4
