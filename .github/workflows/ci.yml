@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run LSP tests
+        run: cargo test --manifest-path=lsp/Cargo.toml
+
+  build-extension:
+    name: Build Extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Zed
+        uses: zed-industries/setup-zed@v1
+
+      - name: Build extension
+        working-directory: ./extension
+        run: zed build
+
+      - name: Upload extension artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-wasm-dev
+          path: extension/extension.wasm
+          retention-days: 7
+
+  build-lsp:
+    name: Build LSP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build LSP
+        run: cargo build --release --manifest-path=lsp/Cargo.toml
+
+      - name: Check binary size
+        run: |
+          SIZE=$(du -h lsp/target/release/env-checker-lsp | cut -f1)
+          echo "LSP binary size: $SIZE"
+          if [[ $(du -b lsp/target/release/env-checker-lsp | cut -f1) -gt 10485760 ]]; then
+            echo "Warning: LSP binary exceeds 10MB"
+            exit 1
+          fi

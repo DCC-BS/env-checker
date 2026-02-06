@@ -1,0 +1,10 @@
+/home/tobi/Code/env-checker-zed/target/debug/deps/liblinux_raw_sys-f81fc52c43f924ca.rmeta: /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/lib.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/elf.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/auxvec.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/errno.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/general.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/ioctl.rs
+
+/home/tobi/Code/env-checker-zed/target/debug/deps/linux_raw_sys-f81fc52c43f924ca.d: /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/lib.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/elf.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/auxvec.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/errno.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/general.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/ioctl.rs
+
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/lib.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/elf.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/auxvec.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/errno.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/general.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.11.0/src/x86_64/ioctl.rs:

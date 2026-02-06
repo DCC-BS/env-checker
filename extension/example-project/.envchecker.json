@@ -1,0 +1,9 @@
+{
+  "schemaFiles": [],
+  "envFiles": [".env"],
+  "autoDiscover": true,
+  "groups": {
+    "runtime": "Runtime Variables",
+    "build-time": "Build-time Variables"
+  }
+}

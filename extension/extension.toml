@@ -1,0 +1,11 @@
+id = "env-checker"
+name = "Environment Checker"
+schema_version = 1
+version = "0.1.0"
+description = "Validates .env files against Zod, Pydantic, or YAML schemas"
+authors = ["Environment Checker"]
+repository = "https://github.com/yourusername/env-checker"
+
+[language_servers.env_checker]
+name = "env-checker"
+languages = ["Env", "Shell Script"]

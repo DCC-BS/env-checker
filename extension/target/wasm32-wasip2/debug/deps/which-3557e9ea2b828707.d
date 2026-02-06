@@ -1,0 +1,12 @@
+/home/tobi/Code/env-checker-zed/target/wasm32-wasip2/debug/deps/which-3557e9ea2b828707.d: /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/lib.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/checker.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/error.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/finder.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/helper.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/sys.rs
+
+/home/tobi/Code/env-checker-zed/target/wasm32-wasip2/debug/deps/libwhich-3557e9ea2b828707.rlib: /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/lib.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/checker.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/error.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/finder.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/helper.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/sys.rs
+
+/home/tobi/Code/env-checker-zed/target/wasm32-wasip2/debug/deps/libwhich-3557e9ea2b828707.rmeta: /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/lib.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/checker.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/error.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/finder.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/helper.rs /home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/sys.rs
+
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/lib.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/checker.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/error.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/finder.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/helper.rs:
+/home/tobi/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.0/src/sys.rs:
