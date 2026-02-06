@@ -27,7 +27,7 @@ impl EnvChecker {
         );
 
         let release = zed::latest_github_release(
-            "yourusername/env-checker",
+            "DCC-BS/env-checker",
             zed::GithubReleaseOptions {
                 require_assets: true,
                 pre_release: false,
