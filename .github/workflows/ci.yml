@@ -27,9 +27,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip2
+
       - name: Build extension
         working-directory: ./extension
-        run: cargo build
+        run: cargo build --target wasm32-wasip2
+
+      - name: Rename WASM output
+        run: mv extension/target/wasm32-wasip2/debug/env_checker_zed.wasm extension/extension.wasm
 
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4

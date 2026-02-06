@@ -142,7 +142,7 @@ impl zed::Extension for EnvChecker {
     ) -> zed::Result<zed::Command> {
         let binary_path = self
             .language_server_binary(language_server_id, worktree)
-            .map_err(|e| zed::Error::msg(&e))?;
+            .map_err(|e| format!("failed to get binary path: {e}"))?;
 
         Ok(zed::Command {
             command: binary_path,
