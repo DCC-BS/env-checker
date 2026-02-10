@@ -24,7 +24,7 @@ jobs:
               run: cargo build --target wasm32-wasip2
 
             - name: Rename WASM output
-              run: mv extension/target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
+              run: mv target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
 
             - name: Upload extension artifact
               uses: actions/upload-artifact@v4
@@ -72,11 +72,9 @@ jobs:
               shell: pwsh
               run: |
                   New-Item -ItemType Directory -Force -Path release-artifact
-                  Copy-Item target\${{ matrix.target }}\release\env-checker-lsp.exe release-artifact\
+                  Copy-Item target\release\env-checker-lsp.exe release-artifact\
                   cd release-artifact
-                  New-Item -ItemType Directory -Force -Path target\release
-                  Move-Item env-checker-lsp.exe target\release\
-                  Compress-Archive -Path target -DestinationPath env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
+                  Compress-Archive -Path env-checker-lsp.exe -DestinationPath env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
 
             - name: Upload LSP artifact
               uses: actions/upload-artifact@v4
