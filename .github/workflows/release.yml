@@ -71,7 +71,7 @@ jobs:
               shell: pwsh
               run: |
                   New-Item -ItemType Directory -Force -Path release-artifact
-                  Copy-Item lsp\target\${{ matrix.target }}\release\env-checker-lsp.exe release-artifact\
+                  Copy-Item target\${{ matrix.target }}\release\env-checker-lsp.exe release-artifact\
                   cd release-artifact
                   New-Item -ItemType Directory -Force -Path target\release
                   Move-Item env-checker-lsp.exe target\release\
