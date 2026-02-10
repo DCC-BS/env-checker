@@ -37,7 +37,7 @@ jobs:
         run: cargo build --target wasm32-wasip2
 
       - name: Rename WASM output
-        run: mv extension/target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
+        run: mv target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
 
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4
@@ -61,9 +61,9 @@ jobs:
 
       - name: Check binary size
         run: |
-          SIZE=$(du -h lsp/target/release/env-checker-lsp | cut -f1)
+          SIZE=$(du -h target/release/env-checker-lsp | cut -f1)
           echo "LSP binary size: $SIZE"
-          if [[ $(du -b lsp/target/release/env-checker-lsp | cut -f1) -gt 10485760 ]]; then
+          if [[ $(du -b target/release/env-checker-lsp | cut -f1) -gt 10485760 ]]; then
             echo "Warning: LSP binary exceeds 10MB"
             exit 1
           fi
