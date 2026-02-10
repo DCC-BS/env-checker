@@ -1,118 +1,118 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+    push:
+        tags:
+            - "v*.*.*"
 
 jobs:
-  build-extension:
-    name: Build Zed Extension
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    build-extension:
+        name: Build Zed Extension
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-wasip2
+            - name: Install Rust toolchain
+              uses: dtolnay/rust-toolchain@stable
+              with:
+                  targets: wasm32-wasip2
 
-      - name: Build extension
-        working-directory: ./extension
-        run: cargo build --target wasm32-wasip2
+            - name: Build extension
+              working-directory: ./extension
+              run: cargo build --target wasm32-wasip2
 
-      - name: Rename WASM output
-        run: mv extension/target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
+            - name: Rename WASM output
+              run: mv extension/target/wasm32-wasip2/debug/deps/env_checker_zed.wasm extension/extension.wasm
 
-      - name: Upload extension artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: extension-wasm
-          path: extension/extension.wasm
-          retention-days: 1
+            - name: Upload extension artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: extension-wasm
+                  path: extension/extension.wasm
+                  retention-days: 1
 
-  build-lsp:
-    name: Build LSP
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            arch: x86_64
-            platform: unknown-linux-gnu
-            ext: tar.gz
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            arch: x86_64
-            platform: pc-windows-msvc
-            ext: zip
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    build-lsp:
+        name: Build LSP
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                include:
+                    - os: ubuntu-latest
+                      target: x86_64-unknown-linux-gnu
+                      arch: x86_64
+                      platform: unknown-linux-gnu
+                      ext: tar.gz
+                    - os: windows-latest
+                      target: x86_64-pc-windows-msvc
+                      arch: x86_64
+                      platform: pc-windows-msvc
+                      ext: zip
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+            - name: Install Rust toolchain
+              uses: dtolnay/rust-toolchain@stable
 
-      - name: Build LSP
-        run: cargo build --release --manifest-path=lsp/Cargo.toml
+            - name: Build LSP
+              run: cargo build --release --manifest-path=lsp/Cargo.toml
 
-      - name: Prepare Linux artifacts
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          mkdir -p release-artifact
-          cp lsp/target/release/env-checker-lsp release-artifact/
-          cd release-artifact
-          tar czf env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }} env-checker-lsp
+            - name: Prepare Linux artifacts
+              if: matrix.os == 'ubuntu-latest'
+              run: |
+                  mkdir -p release-artifact
+                  cp target/release/env-checker-lsp release-artifact/
+                  cd release-artifact
+                  tar czf env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }} env-checker-lsp
 
-      - name: Prepare Windows artifacts
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path release-artifact
-          Copy-Item lsp\target\${{ matrix.target }}\release\env-checker-lsp.exe release-artifact\
-          cd release-artifact
-          New-Item -ItemType Directory -Force -Path target\release
-          Move-Item env-checker-lsp.exe target\release\
-          Compress-Archive -Path target -DestinationPath env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
+            - name: Prepare Windows artifacts
+              if: matrix.os == 'windows-latest'
+              shell: pwsh
+              run: |
+                  New-Item -ItemType Directory -Force -Path release-artifact
+                  Copy-Item lsp\target\${{ matrix.target }}\release\env-checker-lsp.exe release-artifact\
+                  cd release-artifact
+                  New-Item -ItemType Directory -Force -Path target\release
+                  Move-Item env-checker-lsp.exe target\release\
+                  Compress-Archive -Path target -DestinationPath env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
 
-      - name: Upload LSP artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: lsp-${{ matrix.os }}-${{ matrix.arch }}
-          path: release-artifact/env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
-          retention-days: 1
+            - name: Upload LSP artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: lsp-${{ matrix.os }}-${{ matrix.arch }}
+                  path: release-artifact/env-checker-lsp-${{ github.ref_name }}-${{ matrix.arch }}-${{ matrix.platform }}.${{ matrix.ext }}
+                  retention-days: 1
 
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    needs: [build-extension, build-lsp]
-    permissions:
-      contents: write
-    steps:
-      - name: Download extension artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: extension-wasm
-          path: ./artifacts
+    release:
+        name: Create Release
+        runs-on: ubuntu-latest
+        needs: [build-extension, build-lsp]
+        permissions:
+            contents: write
+        steps:
+            - name: Download extension artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: extension-wasm
+                  path: ./artifacts
 
-      - name: Download LSP artifacts
-        uses: actions/download-artifact@v4
-        with:
-          pattern: lsp-*
-          path: ./artifacts
-          merge-multiple: true
+            - name: Download LSP artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  pattern: lsp-*
+                  path: ./artifacts
+                  merge-multiple: true
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            artifacts/extension.wasm
-            artifacts/*.tar.gz
-            artifacts/*.zip
-          generate_release_notes: true
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  files: |
+                      artifacts/extension.wasm
+                      artifacts/*.tar.gz
+                      artifacts/*.zip
+                  generate_release_notes: true
+                  draft: false
+                  prerelease: false
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
