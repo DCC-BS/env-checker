@@ -1,2 +1,0 @@
-cargo:rerun-if-changed=build.rs
-cargo:rustc-env=DEBUG_OUTPUT_DIR=/home/tobi/Code/env-checker-zed/target/debug/build/wit-bindgen-rust-macro-edf7a6c783ef43c9/out
